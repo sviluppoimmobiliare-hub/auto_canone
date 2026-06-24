@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 stradario_lecce = {
     1: [
         "VIA DUCA DEGLI ABRUZZI", "VIA ACAJA", "CORTE CONTE ACCARDO", "PIAZZETTA GIULIO ANT. ACQUAVIVA",
@@ -215,166 +214,239 @@ stradario_lecce = {
     ]
 }
 st.subheader("Generalità")
-via = st.text_input("Inserisci la via?").upper()
+via = st.text_input("Inserisci la via senza numero civico, nome completo").upper()
 mq_tot = st.number_input("Inserire i mq(superficie calpestabile al netto delle pareti")
+
+
+for k in stradario_lecce.keys():
+    stradario_lecce[k] = [i.strip().replace(" ", "") for i in stradario_lecce[k]]
+
+pulizia = lambda x : x.replace(" ", "").strip().upper()
 
 can_min = 0.0
 can_max = 0.0
-if via not in stradario_lecce[1] or stradario_lecce[2] or stradario_lecce[3]:
-    st.warning("Via non presente nel dizionario")
-if via in stradario_lecce[1]:
 
-    car1 = st.checkbox("Appartamenti dal 1° piano fuori terra")
-    car2 = st.checkbox("Allacciamento gas metano")
-    car3 = st.checkbox("Ascensore a partire dal 2° piano")
-    car4 = st.checkbox("Autoclave")
-    car5 = st.checkbox("Impianto elettrico interno adeguato alla legge n.37/08 (già n. 46/90)")
-    car6 = st.checkbox("Riscaldamento autonomo o centralizzato")
-    car7 = st.checkbox("Infissi interni ed esterni in buono stato")
-    car8 = st.checkbox("Servizi igienici completi (tazza, bidet, lavabo, doccia ovvero vasca da bagno) posti all'interno dell'alloggio.")
-    condizioni = [car1,car2,car3,car4,car5,car6,car7,car8]
-    counter = sum(con for con in condizioni if con == True)
-    servizi_igienici= st.checkbox("Servizi igienici interni all'alloggio?")
-    if counter >= 6 and servizi_igienici == True:
-        can_min = 4.7
-        can_max = 5.4
-        st.success(f"Assegnata: SUB-FASCIA A")
-    elif counter < 6 and counter >= 4 and servizi_igienici == True:
-        can_min = 3.6
-        can_max = 4.6
-        st.info(f"Assegnata: SUB-FASCIA B")
-    else:
-        can_min = 1.8
-        can_max = 3.5
-        st.warning(f"Assegnata: SUB-FASCIA C")
+if via and via.strip()!="":
+    if all(pulizia(via) not in stradario_lecce[k] for k in stradario_lecce.keys()):
+        st.warning("La via non è stata trovata")
+    if pulizia(via) in stradario_lecce[1]:
 
-
-
-
-
-
-if via in stradario_lecce[3]:
-
-    car1 = st.checkbox("Allacciamento al gas metano")
-    car2 = st.checkbox("Ascensore a partire dal 3° piano")
-    car3 = st.checkbox("Autoclave")
-    car4 = st.checkbox("Verde esclusivo")
-    car5 = st.checkbox("Verde condominiale e/o verde attrezzato")
-    car6 = st.checkbox("Cortile in comune")
-    car7 = st.checkbox("Impianto elettrico interno adeguato alla legge n.37/08 (già n. 46/90)")
-    car8 = st.checkbox("Impianto di ricezione satellitare")
-    car9 = st.checkbox("Impianti sportivi")
-    car10 = st.checkbox("Riscaldamento centralizzato oppure autonomo")
-    car11 = st.checkbox("Porta blindata")
-    car12 = st.checkbox("Ripostiglio e/o cantina")
-    car13 = st.checkbox("Doppi servizi")
-    car14 = st.checkbox("Impianto di condizionamento")
-    car15 = st.checkbox("Infissi interni ed esterni in buono stato")
-    car16 = st.checkbox("1° Posto auto")
-    car17 = st.checkbox("2° Posto auto")
-    car18 = st.checkbox("Box auto")
-    car19 = st.checkbox("Cassaforte")
-    car20 = st.checkbox("Parquet")
-    car21 = st.checkbox("Attico")
-
-    condizioni = [car1, car2, car3, car4, car5, car6, car7, car8, car9, car10,
-                  car11, car12, car13, car14, car15, car16, car17, car18, car19, car20, car21]
-
-    counter = sum(con for con in condizioni if con == True)
-
-    if counter >= 13:
-        can_min = 3.90
-        can_max = 4.30
-        st.success(f"Assegnata: SUB-FASCIA A" )
-
-    elif counter >= 8:
-
-        can_min = 3.20
-        can_max = 3.80
-        st.info(f"Assegnata: SUB-FASCIA B ")
-
-    else:
-
-        can_min = 2.40
-        can_max = 3.20
-        st.warning(f"Assegnata: SUB-FASCIA C")
-
-
-
-
-st.subheader("1. Accessori e pertinenze")
-
-
-if st.checkbox("Presenti balconi, terrazze ad uso esclusivo o cantine?"):
-    mq_balconi = st.number_input("Inserire i mq (balconi, terrazze, cantine):")
-    mq_tot += mq_balconi * 0.25
-
-if st.checkbox("Presente autorimessa singola?"):
-    mq_autorimessa = st.number_input("Inserire i mq dell'autorimessa singola:")
-    mq_tot += mq_autorimessa * 0.50
-
-if st.checkbox("Presente posto macchina in autorimesse di uso comune?"):
-    mq_posto_comune = st.number_input("Inserire i mq del posto macchina (autorimessa comune):")
-    mq_tot += mq_posto_comune * 0.20
-
-if st.checkbox("Presente posto macchina in spazi comuni?"):
-    mq_posto_spazi = st.number_input("Inserire i mq del posto macchina (spazi comuni):")
-    mq_tot += mq_posto_spazi * 0.15
-
-if st.checkbox("Presente superficie scoperta ad uso esclusivo (area verde o pavimentata non a livello)?"):
-    mq_scoperta = st.number_input("Inserire i mq della superficie scoperta:")
-
-    if mq_scoperta > 0:
-
-        mq_scoperta_utile = min(mq_scoperta, 300.0)
-
-        if mq_scoperta_utile <= mq_tot:
-            mq_tot += mq_scoperta_utile * 0.20
+        car1 = st.checkbox("Appartamenti dal 1° piano fuori terra")
+        car2 = st.checkbox("Allacciamento gas metano")
+        car3 = st.checkbox("Ascensore a partire dal 2° piano")
+        car4 = st.checkbox("Autoclave")
+        car5 = st.checkbox("Impianto elettrico interno adeguato alla legge n.37/08 (già n. 46/90)")
+        car6 = st.checkbox("Riscaldamento autonomo o centralizzato")
+        car7 = st.checkbox("Infissi interni ed esterni in buono stato")
+        car8 = st.checkbox(
+            "Servizi igienici completi (tazza, bidet, lavabo, doccia ovvero vasca da bagno) posti all'interno dell'alloggio.")
+        condizioni = [car1, car2, car3, car4, car5, car6, car7, car8]
+        counter = sum(con for con in condizioni if con == True)
+        servizi_igienici = st.checkbox("Servizi igienici interni all'alloggio?")
+        if counter >= 6 and servizi_igienici == True:
+            can_min = 4.7
+            can_max = 5.4
+            st.success(f"Assegnata: SUB-FASCIA A")
+        elif counter < 6 and counter >= 4 and servizi_igienici == True:
+            can_min = 3.6
+            can_max = 4.6
+            st.info(f"Assegnata: SUB-FASCIA B")
         else:
-            mq_tot += (mq_tot * 0.20) + ((mq_scoperta_utile - mq_tot) * 0.10)
+            can_min = 1.8
+            can_max = 3.5
+            st.warning(f"Assegnata: SUB-FASCIA C")
+    if pulizia(via) in stradario_lecce[2]:
 
-st.subheader("Altre superfici")
+        car1 = st.checkbox("Allacciamento al gas metano")
+        car2 = st.checkbox("Ascensore a partire dal 3° piano")
+        car3 = st.checkbox("Autoclave")
+        car4 = st.checkbox("Verde condominiale")
+        car5 = st.checkbox("Cortile in comune")
+        car6 = st.checkbox(
+            "Impianto elettrico interno adeguato alla legge n.37/08 (già n.46/90)")
+        car7 = st.checkbox("Impianto di ricezione satellitare")
+        car8 = st.checkbox("Riscaldamento centralizzato oppure autonomo")
+        car9 = st.checkbox("Porta blindata")
+        car10 = st.checkbox("Ripostiglio e/o Cantina")
+        car11 = st.checkbox("Doppi servizi")
+        car12 = st.checkbox("Impianto di condizionamento")
+        car13 = st.checkbox("Infissi interni ed esterni in buono stato")
+        car14 = st.checkbox("Posto auto")
+        car15 = st.checkbox("2° Posto auto")
+        car16 = st.checkbox("Attico")
 
-if st.checkbox("Presenti vani con altezza utile compresa fra 1,00 e 1,70 metri?"):
-    mq_vani_bassi = st.number_input("Inserire i mq dei vani (h 1,00 - 1,70 m):")
-    mq_tot += mq_vani_bassi * 0.70
+        condizioni = [car1, car2, car3, car4, car5, car6, car7, car8, car9, car10, car11, car12, car13, car14, car15,
+                      car16]
+        counter = sum(con for con in condizioni if con == True)
 
-if st.checkbox("Presenti soppalchi ed ammezzati con altezza utile superiore a 1,70 metri (con scala fissa)?"):
-    mq_soppalchi = st.number_input("Inserire i mq dei soppalchi/ammezzati:")
-    mq_tot += mq_soppalchi * 1.00
+        st.markdown("**Condizioni Speciali (Fascia A)**")
+
+        zona_pregio = st.checkbox("Zona di pregio: immobili individuati nella zona due dell'allegato 1")
+        immobile_A7 = st.checkbox("Immobili accatastati A/7")
+
+        if (counter >= 9 or zona_pregio == True or immobile_A7 == True) and car6 == True:
+
+            can_min = 4.70
+            can_max = 5.40
+            st.success(f"Assegnata: SUB-FASCIA A ")
+
+        elif counter >= 6:
+
+            can_min = 3.90
+            can_max = 4.60
+            st.info(f"Assegnata: SUB-FASCIA B ")
+
+        else:
+            can_min = 3.00
+            can_max = 3.80
+            st.warning(f"Assegnata: SUB-FASCIA C ")
+
+    if pulizia(via) in stradario_lecce[3]:
+
+        car1 = st.checkbox("Allacciamento al gas metano")
+        car2 = st.checkbox("Ascensore a partire dal 3° piano")
+        car3 = st.checkbox("Autoclave")
+        car4 = st.checkbox("Verde esclusivo")
+        car5 = st.checkbox("Verde condominiale e/o verde attrezzato")
+        car6 = st.checkbox("Cortile in comune")
+        car7 = st.checkbox("Impianto elettrico interno adeguato alla legge n.37/08 (già n. 46/90)")
+        car8 = st.checkbox("Impianto di ricezione satellitare")
+        car9 = st.checkbox("Impianti sportivi")
+        car10 = st.checkbox("Riscaldamento centralizzato oppure autonomo")
+        car11 = st.checkbox("Porta blindata")
+        car12 = st.checkbox("Ripostiglio e/o cantina")
+        car13 = st.checkbox("Doppi servizi")
+        car14 = st.checkbox("Impianto di condizionamento")
+        car15 = st.checkbox("Infissi interni ed esterni in buono stato")
+        car16 = st.checkbox("1° Posto auto")
+        car17 = st.checkbox("2° Posto auto")
+        car18 = st.checkbox("Box auto")
+        car19 = st.checkbox("Cassaforte")
+        car20 = st.checkbox("Parquet")
+        car21 = st.checkbox("Attico")
+
+        condizioni = [car1, car2, car3, car4, car5, car6, car7, car8, car9, car10,
+                      car11, car12, car13, car14, car15, car16, car17, car18, car19, car20, car21]
+
+        counter = sum(con for con in condizioni if con == True)
 
 
+        if counter >= 13:
+            can_min = 3.90
+            can_max = 4.30
+            st.success(f"Assegnata: SUB-FASCIA A")
+
+        elif counter >= 8:
+
+            can_min = 3.20
+            can_max = 3.80
+            st.info(f"Assegnata: SUB-FASCIA B ")
+
+        else:
+
+            can_min = 2.40
+            can_max = 3.20
+            st.warning(f"Assegnata: SUB-FASCIA C")
+        st.subheader("1. Accessori e pertinenze")
+
+        if st.checkbox("Presenti balconi, terrazze ad uso esclusivo o cantine?"):
+            mq_balconi = st.number_input("Inserire i mq (balconi, terrazze, cantine):")
+            mq_tot += mq_balconi * 0.25
+
+        if st.checkbox("Presente autorimessa singola?"):
+            mq_autorimessa = st.number_input("Inserire i mq dell'autorimessa singola:")
+            mq_tot += mq_autorimessa * 0.50
+
+        if st.checkbox("Presente posto macchina in autorimesse di uso comune?"):
+            mq_posto_comune = st.number_input("Inserire i mq del posto macchina (autorimessa comune):")
+            mq_tot += mq_posto_comune * 0.20
+
+        if st.checkbox("Presente posto macchina in spazi comuni?"):
+            mq_posto_spazi = st.number_input("Inserire i mq del posto macchina (spazi comuni):")
+            mq_tot += mq_posto_spazi * 0.15
+
+        if st.checkbox("Presente superficie scoperta ad uso esclusivo (area verde o pavimentata non a livello)?"):
+            mq_scoperta = st.number_input("Inserire i mq della superficie scoperta:")
+
+            if mq_scoperta > 0:
+
+                mq_scoperta_utile = min(mq_scoperta, 300.0)
+
+                if mq_scoperta_utile <= mq_tot:
+                    mq_tot += mq_scoperta_utile * 0.20
+                else:
+                    mq_tot += (mq_tot * 0.20) + ((mq_scoperta_utile - mq_tot) * 0.10)
+
+        st.subheader("Altre superfici")
+
+        if st.checkbox("Presenti vani con altezza utile compresa fra 1,00 e 1,70 metri?"):
+            mq_vani_bassi = st.number_input("Inserire i mq dei vani (h 1,00 - 1,70 m):")
+            mq_tot += mq_vani_bassi * 0.70
+
+        if st.checkbox("Presenti soppalchi ed ammezzati con altezza utile superiore a 1,70 metri (con scala fissa)?"):
+            mq_soppalchi = st.number_input("Inserire i mq dei soppalchi/ammezzati:")
+            mq_tot += mq_soppalchi * 1.00
+
+        moltiplicatore = 1.0
+
+        if mq_tot > 115.0:
+            moltiplicatore = 0.90
 
 
-moltiplicatore = 1.0
+        elif mq_tot > 0 and mq_tot < 45.0:
 
-if mq_tot> 115.0:
-    moltiplicatore = 0.90
-
-
-elif mq_tot > 0 and mq_tot < 45.0:
-
-    moltiplicatore = 1.25
+            moltiplicatore = 1.25
 
 
-elif mq_tot >= 45.0 and mq_tot < 60.0:
-    moltiplicatore = 1.20
+        elif mq_tot >= 45.0 and mq_tot < 60.0:
+            moltiplicatore = 1.20
 
-mq_tot = mq_tot * moltiplicatore
+        mq_tot = mq_tot * moltiplicatore
 
-can_finale_min = mq_tot * can_min
-can_finale_max = mq_tot * can_max
-ammobiliato = st.checkbox("Immobile totalmente immobiliato?")
-parz_ammobiliato = st.checkbox("Immobile parzialmente arredato?")
+        can_finale_min = mq_tot * can_min
+        can_finale_max = mq_tot * can_max
+        ammobiliato = st.checkbox("Immobile totalmente immobiliato?", help="""Per immobile totalmente ammobiliato si intende quello dotato dei seguenti arredi:
+            -Cucina
+            -Pensili a muro oppure credenza
+            -Frigorifero
+            -Fornello
+            -Tavolo con sedie
+            -Scolapiatti e stoviglie
+            -Camera da letto
+            -Letto con materasso
+            -Comodino
+            -Armadio e/o guardaroba
+            -Sedia
+            -Camera — studio
+            -Scrivania con sedia
+            -Libreria
+            -Soggiorno — tinello
+            -Tavolo con sedie
+            -Vetrinetta
+            -Bagno arredato (mensole, specchio, e sedile)
 
-if ammobiliato == True:
-    can_max = can_max + can_max*0.2
-    can_min = can_min + can_min * 0.2
-if parz_ammobiliato == True:
-    can_max = can_max*0.08 + can_max
-    can_min = can_min * 0.08 + can_min
+            Tutte le camere devono essere provviste di idonea illuminazione elettrica.
+            Per immobile parzialmente arredato si intende quello dotato di parte degli arredi innanzi indicati. Gli arredi del vano cucina, della camera da letto e del bagno devono essere sempre presenti.""")
 
+        parz_ammobiliato = st.checkbox("Immobile parzialmente arredato?")
 
-lala = st.button("Stima il range")
-if lala:
-    st.success(f"Range di canone stimato: da {can_finale_min:.2f} € a {can_finale_max:.2f} €")
+        if ammobiliato == True and parz_ammobiliato == False:
+            can_finale_max = can_finale_max + can_finale_max * 0.2
+            can_finale_min = can_finale_min + can_finale_min * 0.2
+        if parz_ammobiliato == True and ammobiliato == False:
+            can_max = can_finale_max * 0.08 + can_finale_max
+            can_min = can_finale_min * 0.08 + can_finale_min
+
+        lala = st.button("Stima il range")
+
+        if lala:
+            if ammobiliato == True and parz_ammobiliato == False:
+                can_max = can_max + can_max * 0.2
+                can_min = can_min + can_min * 0.2
+            if parz_ammobiliato == True and ammobiliato == False:
+                can_max = can_max * 0.08 + can_max
+                can_min = can_min * 0.08 + can_min
+            if parz_ammobiliato == True and ammobiliato == True:
+                st.warning("Entrambe le opzioni di arredamento sono spuntate")
+            st.success(f"Range di canone stimato: da {can_finale_min:.2f} € a {can_finale_max:.2f} €")
+
