@@ -386,7 +386,7 @@ if via and via.strip() != "":
 
     mq_tot = mq_tot * moltiplicatore
 
-    st.subheader("1. Accessori e pertinenze")
+    st.subheader("Accessori e pertinenze")
 
     if st.checkbox("Presenti balconi, terrazze ad uso esclusivo o cantine?"):
         mq_balconi = st.number_input("Inserire i mq (balconi, terrazze, cantine):")
@@ -428,6 +428,8 @@ if via and via.strip() != "":
 
     can_finale_min = mq_tot * can_min
     can_finale_max = mq_tot * can_max
+    
+    st.subheader("Mobilio")
     ammobiliato = st.checkbox("Immobile totalmente immobiliato?", help="""Per immobile totalmente ammobiliato si intende quello dotato dei seguenti arredi:
         -Cucina
         -Pensili a muro oppure credenza
