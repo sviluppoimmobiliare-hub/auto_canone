@@ -1,5 +1,6 @@
 import streamlit as st
 
+
 stradario_lecce = {
     1: [
         "VIA DUCA DEGLI ABRUZZI", "VIA ACAJA", "CORTE CONTE ACCARDO", "PIAZZETTA GIULIO ANT. ACQUAVIVA",
@@ -219,6 +220,8 @@ mq_tot = st.number_input("Inserire i mq(superficie calpestabile al netto delle p
 
 can_min = 0.0
 can_max = 0.0
+if via not in stradario_lecce[1] or stradario_lecce[2] or stradario_lecce[3]:
+    st.warning("Via non presente nel dizionario")
 if via in stradario_lecce[1]:
 
     car1 = st.checkbox("Appartamenti dal 1° piano fuori terra")
@@ -361,7 +364,15 @@ mq_tot = mq_tot * moltiplicatore
 
 can_finale_min = mq_tot * can_min
 can_finale_max = mq_tot * can_max
+ammobiliato = st.checkbox("Immobile totalmente immobiliato?")
+parz_ammobiliato = st.checkbox("Immobile parzialmente arredato?")
 
+if ammobiliato == True:
+    can_max = can_max + can_max*0.2
+    can_min = can_min + can_min * 0.2
+if parz_ammobiliato == True:
+    can_max = can_max*0.08 + can_max
+    can_min = can_min * 0.08 + can_min
 
 
 lala = st.button("Stima il range")
