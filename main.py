@@ -1,476 +1,932 @@
 import streamlit as st
 
-stradario_lecce = {
-    1: [
-        "VIA DUCA DEGLI ABRUZZI", "VIA ACAJA", "CORTE CONTE ACCARDO", "PIAZZETTA GIULIO ANT. ACQUAVIVA",
-        "PIAZZA SS. ADDOLARATA", "CORTE DEGLI ADORNI", "VIA IMPERATORE ADRIANO", "CORTE DEGLI AIELLI",
-        "VIA DEGLI ALAMI", "VIA VITTORIO ALFIERI", "VIA DEGLI AMMIRATI", "CORTE DEGLI ANDRANO",
-        "CORTE DEGLI ANNIBALDI", "VIA DEGLI ANTOGLIETTA", "ARCO DI PRATO", "ARCO DI TRIONFO",
-        "VIA GIACOMO ARDITI", "VIA SAN FRANCESCO ASSISI", "VIA FILIPPO BACILE", "VICO LA BAGLIVA DIETRO",
-        "PIAZZETTA GIORGIO BAGLIVI", "VIA QUINTO FABIO BALBO", "CORTE DEI BALDUINI", "VIA GIROLAMO BALDUINI",
-        "VIA ABRAMO BALMES", "CORTE GIUSEPPE EUGENIO BALSAMO", "VIA VINCENZO BALSAMO", "CORTE CAPPELLA BARLIERA",
-        "CORTE DEI BARONI", "VIA MARCO BASSEO", "VIA CESARE BATTISTI", "VIA PADOVANO BAX",
-        "VIA BECCHERIE VECCHIE", "VIA PIETRO BELLI", "VIA FRANCESCO BERNARDINI", "VIA MARIO BERNARDINI",
-        "VIA ROBERTO DI BICCARI", "CORTE SAN BLASIO", "VIA GIOVANNI BOCCACCIO", "VICO BOEMONDO",
-        "VIA DELLE BOMBARDE", "PIAZZETTA BONIFACIO IX", "CORTE DEI BONSECOLO", "PIAZZA FILIPPO BOTTAZZI",
-        "VIA ULDERIGO BOTTI", "VIA MARINO BRANCACCIO", "VIA GUALTIERO DI BRIENNE", "VIA GAETANO BRUNETTI",
-        "CORTE GILBERTO BRUNSWICH", "CORTE DEI BUCCARELLI", "VIA ANT. COSTAN. CASETTI", "VIA FRANCESCO CASOTTI",
-        "VIA ISABELLA CASTRIOTA", "VIA NICOLA CATALDI", "CORTE SAN CATALDO", "VICO DELLA CAVALLERIZZA",
-        "PIAZZA D'ITALIA", "PIAZZA DUOMO", "VIA REGINA ELENA", "VIA SERAFINO ELMO", "VIA QUINTO ENNIO",
-        "PIAZZETTA LUCIO EPULIONE", "CORTE DEI FALCONI", "VIA VITO FAZZI", "VICO DEI FEDELE",
-        "VIA GIAC. ANT. FERRARI", "VICO DEI FIESCHI", "VIA FABIO FILZI", "PIAZZETTA GIOVANNI DEI FIORENTINI",
-        "CORTE ANTONIO DELLA FLORA", "CORTE FLORIO", "VIA CASALE FORNELLO", "VIA ANTONIO GALATEO",
-        "VIA MAGGIORE GALLIANO", "VIA GIUSEPPE GARIBALDI", "CORTE SAN PIETRO GARZYA", "VIA CONTE GAUFRIDO",
-        "CORTE DEI GENOVESI", "VIA GIOVANNI GENTILE", "CORTE DEI GHOTI", "VIA SS. GIACOMO E FILIPPO",
-        "VIA CORRADO GIAQUINTO", "CORTE DEI GIORGI", "VIA DELLE GIRAVOLTE", "CORTE DEI GIUDICI",
-        "VICO SAN GIUSTO", "VIA GOBETTI", "VIA SALVATORE GRANDE", "VIA ASCANIO GRANDI", "VIA FRANCESCO GUARINI",
-        "VICO DEI GUIDANI", "PIAZZETTA PAUL HARRYS", "VIA IDOMENEO", "PIAZZETTA INNOCENZO XII",
-        "CORTE SANTA IRENE", "VIA REGINA ISABELLA", "VIALE JAPIGIA", "VIA ALFONSO LAMARMORA",
-        "VIA ACHILLE LARDUCCI", "VIA LAZIO", "VIA S. LEONARDO CONSERVATORIO", "VIALE GIACOMO LEOPARDI",
-        "VIALE LO RE FRANCESCO", "VIA FERRANTE LOFFREDA", "PIAZZETTA LONGOBARDI", "CORTE DEI LUBELLI",
-        "VIA LUBELLO", "VIA CESARE AUGUSTO LUCREZIO", "VIA XXV LUGLIO", "VIA MALENNIO", "CORTE DEI MALEPIERI",
-        "VIA GUGLIELMO IL MALO", "VIA ANDREA MANTEGNA", "VIA GIUSEPPE MANTOVANO", "VIA ALESSANDRO MANZONI",
-        "VIA SINDACO MARANGIO", "VIALE MARCHE", "VIA GUGLIELMO MARCONI", "VIALE DEL MARE",
-        "VIA LUDOVICO MAREMONTI", "CORTE DEI MARESGALLI", "PIAZZETTA REGINA MARIA", "VIA BRACCIO MARTELLO",
-        "VIA MATTEO DA LECCE", "VIA GIACOMO MATTEOTTI", "VICO BONAVENTURA DEI MATTHEI", "PIAZZA GIUSEPPE MAZZINI",
-        "CORTE DEI MEMOLI", "CORTE DEI MESAGNESI", "VIA SEPOLCRI MESSAPICI", "CORTE METTOLA", "CORTE MIALI",
-        "VICO ARCO DEI MILANESI", "VICO MONDO NUOVO", "CORTE DEI MONTEFUSCOLI", "CORTE DEI MORICINO",
-        "CORTE DEI MUSCO", "CORTE NHOI", "VIA QUATTRO NOVEMBRE", "VIA GUGLIELMO OBERDAN", "PIAZZA SANTO ORONZO",
-        "PIAZZETTA GIOV. ANT. ORSINI DEL BALZO", "VIALE OTRANTO", "PIAZZETTA ANTONIO PANZERA",
-        "VIA SANTA MARIA DEL PARADISO", "VIA DEL PARCO TORRE", "VIA GIUSEPPE PARINI", "CORTE ANGELO PATARNELLO",
-        "VIA DEI PATITARI", "VICO DIETRO LO OSPEDALE DEI PELLEGRINI", "VIA FRATELLI PELUSO", "VICO DEI PENSINI",
-        "VIA DEI PERRONI", "VIA ERMENEGILDO PERSONÈ", "PIAZZETTA DEI PERUZZI", "VIA FRANCESCO PETRARCA",
-        "VICO SOTTARRANEI", "CORTE DEGLI SPINOLA", "VIA VITO MARIO STAMPACCHIA", "VIA MADONNA DEGLI STUDENTI",
-        "VIA LUIGI STURZO", "VIA MATTEO TAFURO", "PIAZZA TANCREDI", "CORTE DEI TARALLI", "VIA TORQUATO TASSO",
-        "VIA DEL TEATRO ROMANO", "CORTE DEL TELEGRAFO AD ASTA", "VIA TEMPLARI", "VIA DEL THEUTRA", "VIA ORONZO TISO",
-        "CORTE DEI TOLOMEI", "VIALE DELLA UNIVERSITA'", "CORTE VENTURA", "PIAZZA VITTORIO EMANUELE II",
-        "CORSO VITTORIO EMANUELE III", "CORTE ROBERTO VOLTURIO", "VIA GIUSEPPE ZANARDELLI", "CORTE DEI ZIANI",
-        "VIA GIUS. MARIA ZUCCARO"
-    ],
-    2: [
-        "VIA DELL'ABATE ANTONIO", "VIA CESARE ABBA", "VIA ABRUZZI", "VIA ADDA", "VIA ADIGE", "VIA ADRIATICA",
-        "VIA ADUA", "VIA AMBA ALAGI", "VIA DOM. TOMMASO ALBANESE", "PIAZZA DANTE ALIGHERI", "VIA CORRADO ALVARO",
-        "VIA VINCENZO AMPOLO", "VIA NICOLA ANDRIA", "VIA LIVIO ANDRONICO", "VIA DELLE ANIME", "VIA ARCHITA DA TARANTO",
-        "VIA GAETANO ARGENTO", "VIA ARNO", "VIA ASTI", "VIA FRANCESCO ANTONIO ASTORE", "VIA RICCARDO BACCHELLI",
-        "VIA CASALE BAGNARA", "VIA PIERO BARGELLINI", "VIA BASENTO", "VIA DEI BASILIANI", "VIA BASILICATA",
-        "VIA BATTAGLINI", "PIAZZA SAN GIOVANNI BATTISTA", "VIA GIUSEPPE BATTISTA", "VIA BELLINZONA",
-        "VIA VITO BERNARDINO", "VIA DALMAZIO BIRAGO", "VIA NINO BIXIO", "VIA VITTORIO BODINI",
-        "VIA BONAVENTURA DA LAMA",
-        "VIA BERNARDINO BONIFACIO", "VIA DON BOSCO", "VIA ENRICO BOZZI", "VIA BERNARDINO BRACCIO", "VIA BRADANO",
-        "VIA GIORDANO BRUNO", "VIA EMAN. MARIA BUCCARELLI", "VIA MICHELANGELO BUONARROTI", "VIA MONTE SEI BUSI",
-        "VIA LUIGI CADORNA", "VIA PASQUALE CAFARO", "VIA CALABRIA", "VIA FRANCESCO CALASSO", "VIA BRUNO CANTOBELLI",
-        "VIA GIOVANDOME. CATALANO", "VIA VECCHIA CAVALLINO", "VIA CAVOUR", "VIA ANTONIO CECCHI", "VIA PASQUALE CECERE",
-        "VIA CECINA", "VIA VINCENZO CEPOLLA", "VIA FORTUNATO CESARI", "VIA GIUSEPPE CHIRIATTI", "VIA ISIDORO CHIRULLI",
-        "VIA IGNAZIO CIAIA", "VIA VINCENZO CIARDO", "VIA FRANCESCO CILEA", "VIA GIUSEPPE CINO", "VIA PAOLO COLACI",
-        "VIA QUINTO MARIO CORRADO", "VIA CORSICA", "VIA CORVAGLIA", "VIA BENEDETTO CROCE", "VIA NICOLO' DA LEQUILE",
-        "VIA CARLO DALLA CHIESA", "VIA DALMAZIA", "VIA ETTORE D'AMORE", "VIA DOMENICO DE ANGELIS",
-        "VIA ORONZO DE DONNO",
-        "VIA ALCIDE DE GASPERI", "VIA COSIMO DE GIORGI", "VIA GIUSTINO DE IACOBIS", "VIA FRANCESCO DE MURA",
-        "VIA ENRICO DE NICOLA", "PIAZZETTA SAN VINCENZO DE' PAOLI", "VIA FRANCESCO D'ELIA", "VIA GIOVANNI DI CASTRI",
-        "VIA MARIO DI LECCE", "VIA ARMANDO DIAZ", "VIA AURELIANO DIMITRI", "VIA COSTANTINO DIMITRI", "VIA DOGALI",
-        "VIA GAETANO DONIZETTI", "VIA D'OTRANTO MARTIRI", "VIA DUCAS ORSINI", "VIA LUIGI EINAUDI", "VIA EMILIA",
-        "VIA DEI FERRARI", "VIA DEI FIORI", "VIA FIUME", "VIA VITO FORNARI", "VIA AMILCARE FOSCARINI",
-        "VIA GALILEO GALILEI", "VIA ORONZO GARGIULO", "VIA GARIGLIANO", "VIA VESPASIANO GENUINO", "VIA GIUSEPPE GHEZZI",
-        "VIA GORIZIA", "VIA ANTONIO GRAMSCI", "VIA MONTE GRAPPA", "VIA GIUSEPPE GRASSI", "VIA LUIGI GUACCI",
-        "VIA GIOVANNI GUERRIERI", "VIA SANTA MARIA DELL' IDRIA", "VIA INDIPENDENZA", "VIA ISONZO",
-        "VIA GIANCARLO LAZARI", "VIA LIRI", "VIALE DELLA LIBERTA'", "VIA LOMBARDIA", "VIA GIUSEPPE MAGGIO",
-        "VIA MAURO MANIERI", "VIA ANTONIO MANNARINO", "VIA GIROLAMO MARCIANO'", "VIA PIETRO MARTI",
-        "VIA SALVATORE MARTINI", "VIA MARTINO MARINOSCI", "VIA E.A. MARIO", "VIA GIOV. LEON. MARUGI", "VIA CARLO MASSA",
-        "VIA MASSAGLIA", "VIA ORONZO MASSARI", "VIA SAVERIO MERCADANTE", "VIA PIETRO MIGALI", "VIA MINCIO",
-        "VIA EUGENIO MONTALE", "VIA MONTELLO", "VIA ALDO MORO", "VIA MARIO NACCI", "VIA NIZZA", "VIA GIOVANNI NOCCO",
-        "VIA GAETANO DELLA NOCE", "VIA OFANTO", "VIA ORTIGARA", "VIA OSLAVIA", "VIA GIUSEPPE PALAMA",
-        "VIA BALDASSARRE PAPADIA", "VIA GASPARE PAPATODERO", "VIA LUIGI PAPPACODA", "PIAZZA DEI PARTIGIANI",
-        "VIA ANDREA PENNETTERA", "VIA LUDOVICO PEPE", "VIA ARMANDO PEROTTI", "VIA VINCENZO PERSANO",
-        "VIA DIEGO PERSONE'",
-        "VIA MASSENZIO PICCINNI", "VIA PIEMONTE", "VIA PITAGORA", "VIA PO", "VIA FRANCESCO POLI", "VIA PORDENONE",
-        "VIA POZZUOLO", "VIA GIOVANNI PRESTA", "VIA ANTONIO PROFILO", "VIA ORONZO QUARTA", "VIA CESARE RAHO",
-        "VIA BARTOLOMEO RAVENNA", "VIA EGIDIO REALE", "VIA BERNARDINO PADRE REALINO", "VIA REDIPUGLIA",
-        "VIA FRANCESCO RIGLIACO", "VIA CAP. RITUCCI", "VIA SALVATOR ROSA", "VIA ANTONIO ROSMINI",
-        "VIA GIOACCHINO ROSSINI", "VIA RAFFAELE RUBINI", "PIAZZALE RUDIAE", "VIA RUDIAE", "VIA VINCENZO SABATO",
-        "VIA MONTE SABOTINO", "VIA SAGRADO", "VIA CARLO SALERNI", "VIA DEI SALESIANI", "VIA GAETANO SALVEMINI",
-        "VIA VECCHIA SAN CESARIO", "VIA SAN CESARIO", "VIALE SAN NICOLA", "VIA SAN PIETRO IN LAMA", "VIA SANT'ELIA",
-        "VIA RAFFAELLO SANZIO", "VIA MICHELE SAPONARO", "VIA GIUSEPPE SARAGAT", "VIA GIUSEPPE SARNO",
-        "VIA SAN DOMENICO SAVIO", "VIA OTTAVIO SCALFO", "VIA FRANCESCO SCARPA", "VIA DEGLI SCARPARI",
-        "VIA GIAN MARIA SCUPOLA", "VIA SELE", "VIA SETTELACQUARE", "VIA ANDREA SOZZO", "VIA SPALATO",
-        "VIA SILVIO SPAVENTA", "VIALE DELLO STADIO", "VIA GIOVANNI STANO", "VIA PAOLO STOMEO", "VIA FRANCESCO STORELLA",
-        "VIA SUPERSTRADA", "VIA VOLTURNO", "VIA ANTONIO ZIMBALO", "VIA GIUSEPPE ZIMBALO", "VIA TOMMASO TRAETTA",
-        "VIA TRENTO", "VIA TRIESTE", "VIA FRANCESCO TRINCHERA", "VIA SALVATORE TRINCHESE", "VIA GIAMBATTISTA DEL TUFO",
-        "VIA FILIPPO TURATI", "VIA UDINE", "VIA UMBRIA", "VIA DI USSANO", "VIA DI VALESIO", "VIA GIULIO CESARE VANINI",
-        "VIA TIZIANO VECELLIO", "VIA VITTORIO VENETO", "VIA PIETRO VINCENTI", "VIA ORDINE DI VITTORIO VENETO",
-        "VIA SAN GIOV. MARIA VIANNEY", "VIA S. LIGUORI DELLE VITE"
-    ],
-    3: [
-        "VIA BELISARIO ACQUAVIVA", "PIAZZALE ATTILIO ADAMO", "PIAZZALE ADRIANO", "STRADA ADRIATICA SOLICARA",
-        "VIA AGRI",
-        "VIA DELL'AGRICOLTURA", "VIA AGRIGENTO", "VIA FEDELE ALBANESE", "VICO LEANDRO DEGLI ALBANESI",
-        "VIA DEGLI ALBERICI", "PIAZZETTA ALBERTI", "VIA ALESSANDRIA", "VIA ROBERTO ALMAGIA'", "VIA ANCONA",
-        "VIA II TRAVERSA ANDRIANI", "VIA VINCENZO ANDRIANI", "VIA ANIENE", "VIA PRAZIO ANTINORI",
-        "VIA CLEMENTE ANTONACI",
-        "VIA GIUSEPPE APRILE", "VIA LUCIO APULEIO", "VIA ARCHIMEDE", "VIA AREZZO", "VIA NICOLA ARGENTIERI",
-        "VIA ARGENTINA", "PIAZZA NICODEMO ARGENTO", "VIA LUDOVICO ARIOSTO", "CORTE DELLE ARMELLINE",
-        "VIA ARNESANO 1 TRAV SX", "STRADA ESTERNA ARNESANO", "VIA ARNESANO TRAV IPPODROMO", "VIA ARNESANO",
-        "VIA ARNESANO COOPERATIVA VIVALDI", "VIA DELL'ARTIGIANATO", "VIA ASCOLI PICENO", "PIAZZETTA DUCA DI ATENE",
-        "VIA MARCO AURELIO", "VIA AUSONIO", "VIA AVELLINO", "VIA GUGLIELMO BAFFIN", "VIA ADRIANO BALBI",
-        "VIA NUZZO BARBA",
-        "VIA CARLO BARBIERI", "VIA BARI", "VIA AGNESE BATTISTA", "VIA BELICE", "VIA VINCENZO BELLINI",
-        "VIA VITTORE BELLIO",
-        "VIA BELLUNO", "ZONA BELSITO", "VIA COSTANTINO BELTRAMI", "VIA DELLE BENEDETTINE", "VIA BENEVENTO",
-        "VIA BERGAMO",
-        "VIA BERING", "VIA BERNARDINI", "VIA COSIMO BERTACCHI", "VIA DEI PITTORI BIANCHI", "VIA ATTILIO BIASCO",
-        "VIA BIFERNO", "VIA BIZAMANO", "VIA ARRIGO BOITO", "PIAZZALE BOLOGNA", "VIA BOLZANO", "VIA BORMIDA",
-        "VIA ANTONIO BORTONE", "VIA VITTORIO BOTTEGO", "VIA SANDRO BOTTICELLI", "VIA GIACOMO BOVE", "VIA LIBERO BOVIO",
-        "VIA BENEDETTO BRIN", "VIA MARGARITO DA BRINDISI", "VIA GIACOMO BRUCE", "VIA ANTONIO BRUNI",
-        "VIA PLACIDO BUFFELLI",
-        "VIA DINO BUZZATI", "VIA DA CA' MOSTO", "VIA SEBASTIANO CABOTO", "VIA CAGLIARI", "VIA CAIROLI",
-        "VIA POMPONIO CALIO'", "VIA ESTERNA CALIO'", "VIA CALORE", "VIA CALTANISETTA", "VIA CALVANI",
-        "VIA FRANCESCO CAMASSA", "VIA CAMPANIA", "VIA MANFREDO CAMPERIO", "VIA CAMPI", "VIA CAMPOBASSO",
-        "VIA GIUSEPPE CANDIDO", "VIA FRANC. SAVERIO CANDIDO", "VIA AMBROGIO CANTARINI", "VIA RICCIOTTO CANUDO",
-        "VIA CORRADO CAPECE", "VIA LUIGI CAPUANA", "VIA NICOLA CAPUTI", "VIA ANTONIO CARACCIO",
-        "VIA FERRANTE CARACCIOLO",
-        "VIA ALFONSO SOZY CARAFA", "PIAZZA VINCENZO CARDARELLI", "VIA ENNIO CARLINO", "VIA LUIGI CARLUCCIO",
-        "VIA VITO CARLUCCIO", "VIA VECCHIA CARMIANO", "VIA CARSO", "VIA GIACOMO CARTIER", "LOCALITA' CASA SIMINI",
-        "LOCALITA' CASALABATE", "VIA GAETANO CASATI", "VIA FRANCESCO SAVERIO CASAVOLA", "VIA FRANCO CASAVOLA",
-        "VIA GIUSEPPE CASCIARO", "VIA CASERTA", "VIA GIUSEPPE CASTIGLIONE", "VIA ALFREDO CATALANI", "VIA CATANIA",
-        "VIA CATANZARO 1 TRAVERSA", "VIA CATANZARO", "VIA VALERIO CATULLO", "VIA GUIDO CAVALCANTI",
-        "VIA PIETRO CAVALLO",
-        "VIA FELICE CAVALLOTTI", "VIA PIETRO CAVOTI", "VIA CEFALONIA", "VIA CERRATE", "VIA CHIETI", "VIA CIMAROSA",
-        "VIA COSENZA", "VIA CREMONA", "VIA CUNEO", "VIA CUOCO", "VIA D'ACQUISTO", "VIA DAL POZZO TOSCANELLI",
-        "VIA D'ANDREA",
-        "VIA DANIELE", "VIA D'ARAGONA", "VIA D'ARPE", "VIA D'ASTORE", "VIA DE AGOSTINI", "VIA DE BLASI",
-        "VIA DE PASCALIS",
-        "VIA DE RINALDIS", "VIA DE ROMA", "VIA DE ROSIS", "VIA DE SIMONE", "VIA DELEDDA", "VIA DELLA VEDOVA",
-        "VIA DI GIACOMO", "VIA DI PALMA", "VIA DONNO", "VIA DORIA", "VIA DORSO", "VIA DUBROVINIK", "VIA EBOLI",
-        "VIA ELIA", "VIA EREDIA", "VIA ERRIQUEZ", "VIA ESTRAFALLACES", "VIA EUIPPA", "VIA FALCO", "VIA FANULI",
-        "VIA FERMI", "VIA FERRANDI", "VIA FERRANDO", "VIA FERRARA", "VIA FIORE", "VIA FIORINI", "VIA FIRENZE",
-        "VIA FLACCO", "VIA FLASCASSOVITTI", "VIA FLEMING", "VIA FLUMENDOSA", "VIA FOGAZZARO", "VIA FOGGIA",
-        "VIA FONDONE",
-        "VIA FONTANA", "VIA FORLANINI", "VIA FORLI'", "VIA FORTORE", "VIA FOSCOLO", "VIA FREUD", "VIA FRIGOLE",
-        "VIA FRIULI", "VIA FULCIGNANO", "VIA GABRIELI", "VIA GAGLIARDO", "VIA GALATINO", "VIA GALLO", "VIA GASTALDI",
-        "VIA GEMITO", "VIA GENOVA", "VIA GENTILE", "VIA GESSI", "VIA GIAMMATTEO", "VIA GIANCANE", "VIA GIDIULI",
-        "VIA GIGLI", "VIA GIGLIOLI", "VIA DELLE GINESTRE", "VIA GIOIA", "VIA GIORDANO", "VIA GIOTTO", "VIA GIOVENALE",
-        "VIA GIURGOLA", "VIA GIUSTI", "VIA GOLDONI", "VIA GOZZANO", "VIA GRIMALDI", "VIA GROSSETO", "VIA GUARIGLIA",
-        "VIA GUERRAZZI", "VIA IMPERIA", "VIA INDONATORI", "VIA INDRACCOLO", "VIA INDUSTRIA", "ZONA INDUSTRIALE",
-        "VIA INFANTINO", "VIA ISARCO", "VIA ITACA", "LUNGOMARE MARINAI D'ITALIA", "VIA KEPLERO", "VIA LA LIZZA",
-        "VIA LA SPEZIA", "CONTRADA LAMA", "VIA LATINA", "VIA MAESTRI DEL LAVORO", "VIA LENIO", "VIA LEONCAVALLO",
-        "VIA LEONE", "VIA LEPANTO", "STRADA ESTERNA LEQUILE", "VIA LEQUILE", "STRADA ESTERNA LEUCA", "VIA LEUCA",
-        "CORTE SAN LEUCIO", "CORTE DEI LEVANTO", "VIALE DELLA LIBERTA'", "VIA LIBERTINI", "PIAZZA LIBERTINI",
-        "CORTE VINCENZO LICCI", "VIA SAN LIGORIO", "VIA LIGURIA", "PIAZZETTA GIUSEPPE LILLO", "VIA FILIPPO LIPPI",
-        "VIA LIVENZA", "VIA LIVORNO", "VIA VECCHIA LIZZANELLO", "VIA ESTERNA LO PAPA", "VIA ALBERICO LONGO",
-        "VIA BARTOLO LONGO", "VIA LUCCA", "PIAZZETTA FORMOSO LUCE", "VIA BRUNO LUCREZI", "VIA LUPIAE",
-        "VIA SINDACO LUPINACCI", "VIA ENRICO LUPINACCI", "VIA EUGENIO MACCAGNANI", "ZONA MACCHITELLI",
-        "VIA NICCOLO' MACHIAVELLI", "VIA FERDINANDO MAGELLANO", "VIA XXIV MAGGIO", "VIA LUIGI MAGGIULLI",
-        "VIA GIOVANNI MAGINI", "VIA ALBERTO MAGNAGHI", "VIA ALESSANDRO MALASPINA", "VIA ANTONIO MALASPINA",
-        "VIA STRADA ESTERNA MALECARNE", "VIA GIUSEPPE MALECORE", "VIA LANCILLOTTO MALOCELLO", "VIA MALTA",
-        "VIA GIUSEPPE MANFREDI", "VIA MANGIONELLO", "VIA FERNANDO MANNO", "VIA MANTOVA", "VIA GIUSEPPE MANZO",
-        "VIA GIACOMO MARALDI", "VIA LUIGI MARIANO", "VIA GIOVANNI MARINELLI", "VIA FRANCESCO MARMOCCHI",
-        "VIA GAETANO MARTINEZ", "VIA LUIGI MARTUCCI", "VIA MASACCIO", "VIA ALDO MASCIULLO", "VIA MICHELE MASSARI",
-        "VIA MATERA", "VIA PELLEGRINO MATTEUCCI", "VIA MEDAGLIE D'ORO", "VIA EVANGELISTA MENGA", "VIA MERCATORE",
-        "VIA MERINE", "VIA GREGORIO MESSERE", "VIA MESSINA", "VIA METAURO", "VIA ANTONIO MEUCCI", "VIA GIOVANNI MIANI",
-        "VIA MICELLI", "VIA SAN MICHELE MONTE", "VIA PIETRO MICHELI", "VIA ANTONIO MIGLIETTA", "PIAZZALE MILANO",
-        "VIA TITO MINNITI", "VIALE DON MINZONI", "VIA DEI MOCENIGO", "VIA MOLISE", "VIA BIVIO MONTERONI",
-        "VIA ESTERNA MONTERONI", "VIA MONTERONI", "VIA MONTONE", "VIA MORELLI", "VIA MORI", "VIA BONAVENTURA MOROSINI",
-        "VIA MARIO MOSCARDINO", "VIA GIUSEPPE MOSCATI", "VIA GIUSEPPE MOSCHETTINI", "VIA WOLFANG MOZART",
-        "VIA FILIPPO MURATORE", "VIA NICOLA NACUCCHI", "PIAZZA NAPOLI", "VIA CRISTOFORO NEGRI", "CORTE PIER DI NEGRO",
-        "VIA SAN NICOLA", "VIA UMBERTO NOBILE", "VIA NOVARA", "VIA ESTERNA NOVOLI", "VIA NUORO",
-        "VIA TRIFONE NUTRICATI",
-        "VIA DELL'OCCHIATA", "VIA OGLIO", "VIA DEGLI OLITA", "VIA OMBRONE", "VIA DEGLI OREFICI", "VIA EMANUELE ORFANO",
-        "VIA FUORI LE MURA SANTO ORONZO", "VIA DEGLI OROPELLAI", "VIA RAMONDELLO ORSINI", "VIA GUGLIELMOTTO D'OTRANTO",
-        "VIA PUBLIO OVIDIO NASONE", "VIA PACELLI", "VIA MARCO PACUVIO", "LOCALITA' MEZZAGRANDE PADOVA",
-        "VIA NICOLO' PAGANINI",
-        "VIA VITTORIO PAGANO", "ZONA PAGLIARONE", "VIA GUGLIELMO PAISIELLO", "VIA PALADINI",
-        "VIA LUISA AMALIA PALADINI",
-        "VIA ALDO PALAZZESCHI", "VICO DEI PALEOLI", "VIA PALERMO", "PIAZZA DEL PALIO", "CORTE DEI PALMA",
-        "VIA CAMILLO GIOVANNI PALMA", "VIA GIUSEPPE PALMIERI", "VIA DEI PALUMBO", "VIA MICHELE PALUMBO",
-        "VIA PIETRO PALUMBO",
-        "ZONA PAMPOLI", "VIA SALVATORE PANAREO", "VIA PANARO", "VIA LEONE PANCALDO", "CORTE DEI PANDOLFI",
-        "VICO PANEVINO",
-        "VIA PANTALEONE", "VIA PANTELLERIA", "VIA PAPINI", "VIA ORONZO PARLANGELI", "VIA PARMA",
-        "VIA FRANCESCO PASANISI",
-        "VIA GIOVANNI PASCOLI", "VIA EMANUELE PASSABY", "VIA LUIGI PASTEUR", "VIA PATRASSO", "VIA PAVIA",
-        "PIAZZETTA GIUSEPPE PELLEGRINO", "VIA SILVIO PELLICO", "VIA LORENZO PEROSI", "LOCALITA' MEZZAGRANDE PERUGIA",
-        "VIA PESARO", "VIA PESCARA", "VIA GIUSEPPE PETRAGLIONE", "CORTE DEI PETRAROLI", "VIA FRANCESCO PETRELLI",
-        "VIA ARCIVES. PETRONELLI", "CORTE PETTI", "VIA DI PETTORANO", "VIA PIACENZA", "VIA CARLO PIAGGIA", "VIA PIAVE",
-        "VIA MARIA FRANCESCO PIAVE", "VIA FRANCESCO ANTONIO PICCINNI", "VIA ALDO PICCINNO", "VIA ANTONIO PIGAFETTA",
-        "VIA PINTO", "LARGO SAN PIO X", "VIA GUIDO PIOVENE", "VIA LUIGI PIRANDELLO", "PIAZZALE PISA",
-        "VIA CARLO PISACANE",
-        "VIA GIUSEPPE PISANELLI", "STRADA ESTERNA PISELLO", "VIA PISTOIA", "VIA DEL PITTACCIO", "VIA FRANCESCO PIZARRO",
-        "VIA IDELBRANDO PIZZETTI", "VIA MARCO POLO", "VIA AMILCARE PONCHELLI", "VIA PORCIGLIANO",
-        "VIA ODORICO DA PORDENONE",
-        "VIA FILIPPO PORENA", "VIA CARLO PORTA", "VIA AMLETO POSO", "VIA POTENZA", "VIA LEONARDO PRATO", "VIA PREMUDA",
-        "VIA VITTORIO PRIOLO", "VIA PROPERZIO", "VICO NOBILISSIMI DEI PROTO", "VIA GIACOMO PUCCINI", "VIA PUGLIA",
-        "VIA SAN CESARIO QUASIMODO", "PIAZZA QUASIMODO", "VIA SALVATORE RAELI", "VIA VITO RAGUSA", "VICINALE RAMANNO",
-        "VIA RAPOLLA", "CORTE GUIDONE DA RAVENNA", "VICO DEI RAYNO'", "VIA GEREMIA RE", "VIA CLEMENTE REBORA",
-        "VIA NICOLOSO DA RECCO", "VIA RENO", "VIA ANTONIO RENZO", "VIA DELLA REPUBBLICA", "VIA OTTORINO RESPIGHI",
-        "VIA PAOLO REVELLI", "VIA FRANCESCO RIBEZZO", "PIAZZETTA GABRIELE RICCARDI", "VIA GIUSEPPE RICCHIERI",
-        "VIA MATTEO RICCI", "VIA RIETI", "VIA DEL RISORGIMENTO", "VIA CAPITANO RIVABELLA", "CORTE DEI RIVOLA",
-        "VIA CONTE ROBERTO", "CORTE RODI", "VIA ROMA", "VIA LIBORIO ROMANO", "CORTE DEI ROMITI", "VIA ROSSI",
-        "VIA BENIAMINO ROSSI", "VIA ROVIGO", "VIA FRANCESCO RUBICHI", "VIA RICHEL RUBICHI", "VIA RUBICONE",
-        "VIA GAETANO RUCCO", "VIA CARLO RUSSI", "VIA UMBERTO SABA", "VIA SAN SABINO", "VIA SACCO", "CORTE DEI SAETTA",
-        "VIA ANTONIO SALANDRA", "PIAZZA SALERNO", "VIA SALICE", "CORTE DEI SALOMI", "VIA SALSO",
-        "STRADA ESTERNA SAN CATALDO",
-        "VIA SANDALO", "VIA SANGRO", "VIA GIUSEPPE SAPETO", "VICO DELLA SAPONEA", "CORTE DEI SARACENI", "VIA SARDEGNA",
-        "VIA SASSARI", "VIA NAZARIO SAURO", "VIA PRINCIPI DI SAVOIA", "VIA LUIGI SCARAMBONE", "VIA GIUSEPPE SCARDIA",
-        "VIA PEREGRINO SCARDINO", "VIA NICOLA SCHIAVONI", "P.ZZA TITO SCHIPA", "VIA MICHELANGELO SCHIPA",
-        "VIA DELLE SCIENZE",
-        "VIA SCIPIONE AMMIRATO", "VIA LUIGI SCORRANO", "VIA ROCCO SCOTELLARO", "VIA SCRIVIA", "VIA SCUOLA ELEMENTARE",
-        "VIA SECCHIA", "VIA QUINTINO SELLA", "VIA TRAVERSA SERRA BIANCA", "VIA SESIA", "VIA XX SETTEMBRE",
-        "VIA LUIGI SETTEMBRINI", "VICO SFERRACAVALLI", "VIA CONTESSA SIBILLA", "VIA SICILIA", "VIA STANISLAO SIDOTI",
-        "PIAZZALE SIENA", "VIA ERNESTO SIMINI", "VIA DELLA SINAGOGA", "VIA SINNI", "VIA SIRACUSA", "VIA FERECIDE SIRO",
-        "VIA FILIPPO SMALDONE", "VIA SONDRIO", "VIA GAETANO STABILI", "PIAZZETTA DELLA STAMPA", "VIA DEGLI STAMPACCHIA",
-        "VIA ERCOLE STASI", "VIA EMILIO STASI PAOLO", "CORTE GAETANO STELLA", "VICO DEGLI STORELLA",
-        "VICO STORTO VECCHIA CARITA'", "VIA GIANSERIO STRAFELLA", "VIA GUSTAVO STRAFFORELLO", "VIA STURA",
-        "VIA ESTERNA SURBO", "VIA VECCHIA SURBO", "CORTE DEI SYBARIS", "VIA MANIFATTURA TABACCHI", "VIA DI TAFAGNANO",
-        "VIA TAGLIAMENTO", "VIA TANAGRO", "VIA TANARO", "VIA GIANMARIA TARANTINO", "VIA TARANTO", "VIA TARO",
-        "VIA GIUSEPPE TARTINI", "LARGO LUIGI TASSELLI", "VIA TECNICA", "VIA LIVIO TEMPESTA", "VIA TEOCRITO",
-        "VIA TERAMO", "VIA TERNI", "VIA TEVERE", "VIA TICINO", "VIA LUIGI TINELLI", "VIA TIRSO", "VIA CLAUDIO TOLOMEO",
-        "VIA GIOACCHINO TOMA", "VIA NICCOLO' TOMMASEO", "VIA TORINO", "VIA TORRE MOZZA", "VIA COOPERATIVA TORRICELLI",
-        "VIA BENEDETTO TORSELLO", "VIA TOSCANA", "PIAZZALE ARTURO TOSCANINI", "VIA MAGGIORE TOSELLI", "VIA ENRICO TOTI",
-        "VIA TREBBIA", "VIA GIUSEPPE TRICARICO", "VIA DELLA TRIGLIA", "VIA TRILUSSA", "VIA TURATI",
-        "VIA DELL' ULIVO SAN LIGORIO", "VIA PRIMO UMBERTO", "VIA GIUSEPPE UNGARETTI", "VIA GIOACCHINO UNGARO",
-        "VIA URBINO", "VIA ANTONIOTTO USODIMARE", "VIA NICOLA VACCA", "VIA EPANIMONDA VALENTINI", "VIA DIEGO VALERI",
-        "VIA NICOLA VALLETTA", "VIA VALONA", "VIA PIETRO VALZANI", "VIA LUIGI VANVITELLI", "VIA BERNARDO VARENIO",
-        "VIA VARESE", "VIA GIORGIO VASARI", "VIA DI VASTE", "VIA VELINO", "VIA SANTA VENERA", "VIA VITTORIO VENETO",
-        "VIA VENEZIA", "VIA SEBASTIANO VENIERO", "VIA VENOSA", "VIA DEI VERARDI", "VIA VERCELLI", "VIA GIUSEPPE VERDI",
-        "PIAZZA GIUSEPPE VERDI", "VIA DI VERETO", "VIA GIOVANNI VERGA", "VICO VERNAZZA", "VIA VERNOLE", "VIA VERONA",
-        "VIA PAOLO VERONESE", "VIA GIOVANNI DA VERRAZZANO", "CORTE DEL VERRIO", "VIA AMERIGO VESPUCCI",
-        "VIA SANTA MARIA VETERANI", "VIA VICENZA", "VIA ANDREA VIGNES", "VIA PIPPO VIGONI", "VIA VIRGILIO",
-        "VIA MICHELE VITERBO", "VIA ANTONIO VIVALDI", "VIA UGOLINO VIVALDI", "VIA ALESSANDRO VOLTA", "VIA ZANTE"
-    ]
+
+zone_bari = {
+    "ZONA 1": "CITTA' VECCHIA",
+    "ZONA 2": "MURAT",
+    "ZONA 3": "LIBERTA'",
+    "ZONA 4": "MADONNELLA",
+    "ZONA 5": "JAPIGIA E SANT'ANNA",
+    "ZONA 6": "SAN PAOLO",
+    "ZONA 7": "STANIC",
+    "ZONA 8": "SAN GIROLAMO - FESCA",
+    "ZONA 9": "TORRE A MARE SAN GIORGIO",
+    "ZONA 10": "CARRASSI - SAN PASQUALE",
+    "ZONA 11": "POGGIOFRANCO - PICONE",
+    "ZONA 12": "CARBONARA - CEGLIE - LOSETO",
+    "ZONA 13": "SANTO SPIRITO - PALESE"
 }
-st.subheader("Generalità")
-via = st.text_input("Inserisci la via senza numero civico, nome completo").upper()
-mq_tot = st.number_input("Inserire i mq(superficie calpestabile al netto delle pareti")
 
-for k in stradario_lecce.keys():
-    stradario_lecce[k] = [i.strip().replace(" ", "") for i in stradario_lecce[k]]
+caratteristiche_comuni = [
+    "Appartamenti dal 1º piano fuori terra",
+    "Ingresso alloggio da piazza o da mare",
+    "Balcone con vista su piazza o mare",
+    "Allacciamento gas metano",
+    "Impianto di condizionamento",
+    "Secondo servizio igienico",
+    "Spazi esterni ad uso esclusivo e/o condominiale",
+    "Porta blindata",
+    "Cantina o soffitta o giardino privato o terrazza a livello",
+    "Posto auto di pertinenza e/o condominiale assegnato",
+    "Box auto",
+    "Ascensore",
+    "Portierato",
+    "Videosorveglianza condominiale o individuale",
+    "Impianto fotovoltaico o pannelli solari produzione acqua calda",
+    "Impianto citofono",
+    "Impianto di videocitofono",
+    "Impianto di autoclave",
+    "Impianto elettrico interno adeguato ai sensi del D.M. 37/2008",
+    "Attico",
+    "Ripostiglio",
+    "Parquet",
+    "Postazione di ricarica veicoli elettrici nel box/posto auto o antenna satellitare",
+    "Cucina abitabile di almeno 9 mq. con finestra",
+    "Sistemi di sicurezza allarme",
+    "Sistemi di domotica in almeno il 50% dell'unità immobiliare",
+    "Riscaldamento autonomo o centralizzato o pompa di calore",
+    "Infissi interni ed esterni in buono stato",
+    "Cassaforte",
+    "Doppio ingresso o cortile/giardino recintato"
+]
 
-pulizia = lambda x: x.replace(" ", "").strip().upper()
+lista_zone = list(zone_bari.values())
+zona = st.selectbox("Selezionare la zona", lista_zone)
+mq = st.number_input("Inserire i mq dell'immobile")
+st.subheader("Selezionare le caratteristiche")
+valori_checkbox = {}
 
-can_min = 0.0
-can_max = 0.0
+for elemento in caratteristiche_comuni:
+    valori_checkbox[elemento] = st.checkbox(label=elemento, value=False)
 
-if via and via.strip() != "":
-    if all(pulizia(via) not in stradario_lecce[k] for k in stradario_lecce.keys()):
-        st.warning("La via non è stata trovata")
-    if pulizia(via) in stradario_lecce[1]:
+counter = list(valori_checkbox.values()).count(True)
 
-        car1 = st.checkbox("Appartamenti dal 1° piano fuori terra")
-        car2 = st.checkbox("Allacciamento gas metano")
-        car3 = st.checkbox("Ascensore a partire dal 2° piano")
-        car4 = st.checkbox("Autoclave")
-        car5 = st.checkbox("Impianto elettrico interno adeguato alla legge n.37/08 (già n. 46/90)")
-        car6 = st.checkbox("Riscaldamento autonomo o centralizzato")
-        car7 = st.checkbox("Infissi interni ed esterni in buono stato")
-        car8 = st.checkbox(
-            "Servizi igienici completi (tazza, bidet, lavabo, doccia ovvero vasca da bagno) posti all'interno dell'alloggio.")
-        condizioni = [car1, car2, car3, car4, car5, car6, car7, car8]
-        counter = sum(con for con in condizioni if con == True)
-        servizi_igienici = st.checkbox("Servizi igienici interni all'alloggio?")
-        if counter >= 6 and servizi_igienici == True:
-            can_min = 4.7
-            can_max = 5.4
-            st.success(f"Assegnata: SUB-FASCIA A")
-        elif counter < 6 and counter >= 4 and servizi_igienici == True:
-            can_min = 3.6
-            can_max = 4.6
-            st.info(f"Assegnata: SUB-FASCIA B")
+if zona == "CITTA' VECCHIA":
+    zona_pregio = st.checkbox("Zona di Pregio",
+                              help="gli immobili con balcone su mare o su Piazza Mercantile – Piazza Ferrarese – Piazza Massari – Via Venezia")
+    parzialmente_ammobiliato = st.checkbox("L'immobile è parzialmente ammobiliato?")
+    totalmente_ammobiliato = st.checkbox("L'immobile è totalmente ammobiliato?")
+    requisiti_pregio = (zona_pregio and valori_checkbox["Impianto di autoclave"] and
+                valori_checkbox["Riscaldamento autonomo o centralizzato o pompa di calore"] and  valori_checkbox["Impianto elettrico interno adeguato ai sensi del D.M. 37/2008"])
+
+    if totalmente_ammobiliato and parzialmente_ammobiliato:
+        st.warning("L'immobile non può essere totalmente e parzialmente arredato allo stesso tempo")
+    else:
+        requisiti_arredo = (
+                valori_checkbox["Impianto di autoclave"] and
+                valori_checkbox["Riscaldamento autonomo o centralizzato o pompa di calore"] and
+                valori_checkbox["Infissi interni ed esterni in buono stato"]
+        )
+
+
+        fascia_nativa = ""
+        if counter > 5 or requisiti_pregio:
+            fascia_nativa = "A"
+        elif counter > 3:
+            fascia_nativa = "B"
         else:
-            can_min = 1.8
-            can_max = 3.5
-            st.warning(f"Assegnata: SUB-FASCIA C")
-    if pulizia(via) in stradario_lecce[2]:
-
-        car1 = st.checkbox("Allacciamento al gas metano")
-        car2 = st.checkbox("Ascensore a partire dal 3° piano")
-        car3 = st.checkbox("Autoclave")
-        car4 = st.checkbox("Verde condominiale")
-        car5 = st.checkbox("Cortile in comune")
-        car6 = st.checkbox(
-            "Impianto elettrico interno adeguato alla legge n.37/08 (già n.46/90)")
-        car7 = st.checkbox("Impianto di ricezione satellitare")
-        car8 = st.checkbox("Riscaldamento centralizzato oppure autonomo")
-        car9 = st.checkbox("Porta blindata")
-        car10 = st.checkbox("Ripostiglio e/o Cantina")
-        car11 = st.checkbox("Doppi servizi")
-        car12 = st.checkbox("Impianto di condizionamento")
-        car13 = st.checkbox("Infissi interni ed esterni in buono stato")
-        car14 = st.checkbox("Posto auto")
-        car15 = st.checkbox("2° Posto auto")
-        car16 = st.checkbox("Attico")
-
-        condizioni = [car1, car2, car3, car4, car5, car6, car7, car8, car9, car10, car11, car12, car13, car14, car15,
-                      car16]
-        counter = sum(con for con in condizioni if con == True)
-
-        st.markdown("**Condizioni Speciali (Fascia A)**")
-
-        zona_pregio = st.checkbox("Zona di pregio: immobili individuati nella zona due dell'allegato 1")
-        immobile_A7 = st.checkbox("Immobili accatastati A/7")
-
-        if (counter >= 9 or zona_pregio == True or immobile_A7 == True) and car6 == True:
-
-            can_min = 4.70
-            can_max = 5.40
-            st.success(f"Assegnata: SUB-FASCIA A ")
-
-        elif counter >= 6:
-
-            can_min = 3.90
-            can_max = 4.60
-            st.info(f"Assegnata: SUB-FASCIA B ")
-
-        else:
-            can_min = 3.00
-            can_max = 3.80
-            st.warning(f"Assegnata: SUB-FASCIA C ")
-
-    if pulizia(via) in stradario_lecce[3]:
-
-        car1 = st.checkbox("Allacciamento al gas metano")
-        car2 = st.checkbox("Ascensore a partire dal 3° piano")
-        car3 = st.checkbox("Autoclave")
-        car4 = st.checkbox("Verde esclusivo")
-        car5 = st.checkbox("Verde condominiale e/o verde attrezzato")
-        car6 = st.checkbox("Cortile in comune")
-        car7 = st.checkbox("Impianto elettrico interno adeguato alla legge n.37/08 (già n. 46/90)")
-        car8 = st.checkbox("Impianto di ricezione satellitare")
-        car9 = st.checkbox("Impianti sportivi")
-        car10 = st.checkbox("Riscaldamento centralizzato oppure autonomo")
-        car11 = st.checkbox("Porta blindata")
-        car12 = st.checkbox("Ripostiglio e/o cantina")
-        car13 = st.checkbox("Doppi servizi")
-        car14 = st.checkbox("Impianto di condizionamento")
-        car15 = st.checkbox("Infissi interni ed esterni in buono stato")
-        car16 = st.checkbox("1° Posto auto")
-        car17 = st.checkbox("2° Posto auto")
-        car18 = st.checkbox("Box auto")
-        car19 = st.checkbox("Cassaforte")
-        car20 = st.checkbox("Parquet")
-        car21 = st.checkbox("Attico")
-
-        condizioni = [car1, car2, car3, car4, car5, car6, car7, car8, car9, car10,
-                      car11, car12, car13, car14, car15, car16, car17, car18, car19, car20, car21]
-
-        counter = sum(con for con in condizioni if con == True)
-
-        if counter >= 13:
-            can_min = 3.90
-            can_max = 4.30
-            st.success(f"Assegnata: SUB-FASCIA A")
-
-        elif counter >= 8:
-
-            can_min = 3.20
-            can_max = 3.80
-            st.info(f"Assegnata: SUB-FASCIA B ")
-
-        else:
-
-            can_min = 2.40
-            can_max = 3.20
-            st.warning(f"Assegnata: SUB-FASCIA C")
-
-    moltiplicatore = 1.0
-
-    if mq_tot > 115.0:
-        moltiplicatore = 0.90
+            fascia_nativa = "C"
 
 
-    elif mq_tot > 0 and mq_tot < 45.0:
+        fascia_finale = fascia_nativa
+        can_min = 0.0
+        can_max = 0.0
 
-        moltiplicatore = 1.25
+        if fascia_nativa == "A":
 
+            can_min, can_max = 5.26, 6.37
+            if parzialmente_ammobiliato:
+                can_min *= 1.10
+                can_max *= 1.10
+            elif totalmente_ammobiliato:
+                can_min *= 1.20
+                can_max *= 1.20
 
-    elif mq_tot >= 45.0 and mq_tot < 60.0:
-        moltiplicatore = 1.20
+        elif fascia_nativa in ["B", "C"]:
 
-    mq_tot = mq_tot * moltiplicatore
+            if parzialmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+                can_min, can_max = 5.26, 6.37
 
-    st.subheader("Accessori e pertinenze")
+            elif totalmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+                can_min, can_max = 5.26 * 1.10, 6.37 * 1.10
 
-    if st.checkbox("Presenti balconi, terrazze ad uso esclusivo o cantine?"):
-        mq_balconi = st.number_input("Inserire i mq (balconi, terrazze, cantine):")
-        mq_tot += mq_balconi * 0.25
-
-    if st.checkbox("Presente autorimessa singola?"):
-        mq_autorimessa = st.number_input("Inserire i mq dell'autorimessa singola:")
-        mq_tot += mq_autorimessa * 0.50
-
-    if st.checkbox("Presente posto macchina in autorimesse di uso comune?"):
-        mq_posto_comune = st.number_input("Inserire i mq del posto macchina (autorimessa comune):")
-        mq_tot += mq_posto_comune * 0.20
-
-    if st.checkbox("Presente posto macchina in spazi comuni?"):
-        mq_posto_spazi = st.number_input("Inserire i mq del posto macchina (spazi comuni):")
-        mq_tot += mq_posto_spazi * 0.15
-
-    if st.checkbox("Presente superficie scoperta ad uso esclusivo (area verde o pavimentata non a livello)?"):
-        mq_scoperta = st.number_input("Inserire i mq della superficie scoperta:")
-
-        if mq_scoperta > 0:
-
-            mq_scoperta_utile = min(mq_scoperta, 300.0)
-
-            if mq_scoperta_utile <= mq_tot:
-                mq_tot += mq_scoperta_utile * 0.20
             else:
-                mq_tot += (mq_tot * 0.20) + ((mq_scoperta_utile - mq_tot) * 0.10)
+                if fascia_nativa == "B":
+                    can_min, can_max = 4.38, 5.25
+                else:
+                    can_min, can_max = 2.18, 4.37
 
-    st.subheader("Altre superfici")
+        st.success(f"Assegnata: FASCIA {fascia_finale}")
+        st.info(f"Canone Minimo: {can_min:.2f} MQ - Canone Massimo: {can_max:.2f} MQ")
 
-    if st.checkbox("Presenti vani con altezza utile compresa fra 1,00 e 1,70 metri?"):
-        mq_vani_bassi = st.number_input("Inserire i mq dei vani (h 1,00 - 1,70 m):")
-        mq_tot += mq_vani_bassi * 0.70
+if zona == "MURAT":
+    zona_pregio = st.checkbox(
+        "Zona di Pregio",
+        help="Immobili con balcone e ingresso su via Sparano, C.so V. Emanuele, C.so Cavour, piazza Garibaldi, Piazza Umberto, piazza Moro"
+    )
+    parzialmente_ammobiliato = st.checkbox("L'immobile è parzialmente ammobiliato?")
+    totalmente_ammobiliato = st.checkbox("L'immobile è totalmente ammobiliato?")
+    requisiti_pregio = (zona_pregio and valori_checkbox["Impianto di autoclave"] and
+                        valori_checkbox["Riscaldamento autonomo o centralizzato o pompa di calore"] and valori_checkbox[
+                            "Impianto elettrico interno adeguato ai sensi del D.M. 37/2008"] and valori_checkbox["Ascensore"])
 
-    if st.checkbox("Presenti soppalchi ed ammezzati con altezza utile superiore a 1,70 metri (con scala fissa)?"):
-        mq_soppalchi = st.number_input("Inserire i mq dei soppalchi/ammezzati:")
-        mq_tot += mq_soppalchi * 1.00
+    if totalmente_ammobiliato and parzialmente_ammobiliato:
+        st.warning("L'immobile non può essere totalmente e parzialmente arredato allo stesso tempo")
+    else:
 
-    can_finale_min = mq_tot * can_min
-    can_finale_max = mq_tot * can_max
-    
-    st.subheader("Mobilio")
-    ammobiliato = st.checkbox("Immobile totalmente immobiliato?", help="""Per immobile totalmente ammobiliato si intende quello dotato dei seguenti arredi:
-        -Cucina
-        -Pensili a muro oppure credenza
-        -Frigorifero
-        -Fornello
-        -Tavolo con sedie
-        -Scolapiatti e stoviglie
-        -Camera da letto
-        -Letto con materasso
-        -Comodino
-        -Armadio e/o guardaroba
-        -Sedia
-        -Camera — studio
-        -Scrivania con sedia
-        -Libreria
-        -Soggiorno — tinello
-        -Tavolo con sedie
-        -Vetrinetta
-        -Bagno arredato (mensole, specchio, e sedile)
+        requisiti_arredo = (
+                valori_checkbox["Impianto di autoclave"] and
+                valori_checkbox["Riscaldamento autonomo o centralizzato o pompa di calore"] and
+                valori_checkbox["Infissi interni ed esterni in buono stato"]
+        )
 
-        Tutte le camere devono essere provviste di idonea illuminazione elettrica.
-        Per immobile parzialmente arredato si intende quello dotato di parte degli arredi innanzi indicati. Gli arredi del vano cucina, della camera da letto e del bagno devono essere sempre presenti.""")
 
-    parz_ammobiliato = st.checkbox("Immobile parzialmente arredato?")
+        fascia_nativa = ""
 
-    if ammobiliato == True and parz_ammobiliato == False:
-        can_finale_max = can_finale_max + can_finale_max * 0.2
-        can_finale_min = can_finale_min + can_finale_min * 0.2
-    if parz_ammobiliato == True and ammobiliato == False:
-        can_max = can_finale_max * 0.08 + can_finale_max
-        can_min = can_finale_min * 0.08 + can_finale_min
+        if requisiti_pregio:
+            fascia_nativa = "A"
+        elif counter > 7:
+            fascia_nativa = "A"
+        elif counter >= 6:
+            fascia_nativa = "B"
+        elif counter >= 5:
+            fascia_nativa = "C"
+        else:
+            fascia_nativa = "D"
 
-    lala = st.button("Stima il range")
 
-    if lala:
-        if ammobiliato == True and parz_ammobiliato == False:
-            can_max = can_max + can_max * 0.2
-            can_min = can_min + can_min * 0.2
-        if parz_ammobiliato == True and ammobiliato == False:
-            can_max = can_max * 0.08 + can_max
-            can_min = can_min * 0.08 + can_min
-        if parz_ammobiliato == True and ammobiliato == True:
-            st.warning("Entrambe le opzioni di arredamento sono spuntate")
-        st.success(f"Range di canone stimato: da {can_finale_min:.2f} € a {can_finale_max:.2f} €")
+        fascia_finale = fascia_nativa
+        can_min = 0.0
+        can_max = 0.0
+
+        if fascia_nativa == "A":
+
+            can_min, can_max = 6.63, 8.20
+            if parzialmente_ammobiliato:
+                can_min *= 1.10
+                can_max *= 1.10
+            elif totalmente_ammobiliato:
+                can_min *= 1.20
+                can_max *= 1.20
+
+        elif fascia_nativa in ["B", "C"]:
+
+            if parzialmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 6.63, 8.20
+
+            elif totalmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 6.63 * 1.10, 8.20 * 1.10
+
+            else:
+
+                if fascia_nativa == "B":
+                    can_min, can_max = 5.38, 6.62
+                else:  # Fascia C
+                    can_min, can_max = 4.76, 5.37
+
+        elif fascia_nativa == "D":
+            can_min, can_max = 2.37, 4.75
+
+        st.success(f"Assegnata: FASCIA {fascia_finale}")
+        st.info(f"Canone Minimo: {can_min:.2f} €/MQ - Canone Massimo: {can_max:.2f} €/MQ")
+
+if zona == "LIBERTA'":
+
+    zona_pregio = st.checkbox(
+        "Zona di Pregio",
+        help="Zona Executive – zona contrada Barone"
+    )
+    parzialmente_ammobiliato = st.checkbox("L'immobile è parzialmente ammobiliato?")
+    totalmente_ammobiliato = st.checkbox("L'immobile è totalmente ammobiliato?")
+
+    if totalmente_ammobiliato and parzialmente_ammobiliato:
+        st.warning("L'immobile non può essere totalmente e parzialmente arredato allo stesso tempo")
+    else:
+        requisiti_arredo = (
+                valori_checkbox["Impianto di autoclave"] and
+                valori_checkbox["Riscaldamento autonomo o centralizzato o pompa di calore"] and
+                valori_checkbox["Infissi interni ed esterni in buono stato"]
+        )
+
+        fascia_nativa = ""
+
+        if zona_pregio:
+            fascia_nativa = "A"
+        elif counter > 7:
+            fascia_nativa = "A"
+        elif counter >= 6:
+            fascia_nativa = "B"
+        elif counter >= 5:
+            fascia_nativa = "C"
+        else:
+            fascia_nativa = "D"
+
+
+        fascia_finale = fascia_nativa
+        can_min = 0.0
+        can_max = 0.0
+
+        if fascia_nativa == "A":
+            can_min, can_max = 5.13, 6.06
+            if parzialmente_ammobiliato:
+                can_min *= 1.10
+                can_max *= 1.10
+            elif totalmente_ammobiliato:
+                can_min *= 1.20
+                can_max *= 1.20
+
+        elif fascia_nativa in ["B", "C"]:
+            if parzialmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+                can_min, can_max = 5.13, 6.06
+
+            elif totalmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 5.13 * 1.10, 6.06 * 1.10
+
+            else:
+
+                if fascia_nativa == "B":
+                    can_min, can_max = 4.51, 5.12
+                else:
+                    can_min, can_max = 4.11, 4.50
+
+        elif fascia_nativa == "D":
+            can_min, can_max = 3.88, 4.10
+
+
+        st.success(f"Assegnata: FASCIA {fascia_finale}")
+        st.info(f"Canone Minimo: {can_min:.2f} €/MQ - Canone Massimo: {can_max:.2f} €/MQ")
+
+if zona == "MADONNELLA":
+    parzialmente_ammobiliato = st.checkbox("L'immobile è parzialmente ammobiliato?")
+    totalmente_ammobiliato = st.checkbox("L'immobile è totalmente ammobiliato?")
+
+    if totalmente_ammobiliato and parzialmente_ammobiliato:
+        st.warning("L'immobile non può essere totalmente e parzialmente arredato allo stesso tempo")
+    else:
+
+        requisiti_arredo = (
+                valori_checkbox["Impianto di autoclave"] and
+                valori_checkbox["Riscaldamento autonomo o centralizzato o pompa di calore"] and
+                valori_checkbox["Infissi interni ed esterni in buono stato"]
+        )
+
+        fascia_nativa = ""
+
+        if counter > 7:
+            fascia_nativa = "A"
+        elif counter >= 6:
+            fascia_nativa = "B"
+        elif counter >= 5:
+            fascia_nativa = "C"
+        else:
+            fascia_nativa = "D"
+
+
+        fascia_finale = fascia_nativa
+        can_min = 0.0
+        can_max = 0.0
+
+        if fascia_nativa == "A":
+            can_min, can_max = 6.01, 6.50
+            if parzialmente_ammobiliato:
+                can_min *= 1.10
+                can_max *= 1.10
+            elif totalmente_ammobiliato:
+                can_min *= 1.20
+                can_max *= 1.20
+
+        elif fascia_nativa in ["B", "C"]:
+            if parzialmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 6.01, 6.50
+
+            elif totalmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 6.01 * 1.10, 6.50 * 1.10
+
+            else:
+                if fascia_nativa == "B":
+                    can_min, can_max = 5.31, 6.00
+                else:
+                    can_min, can_max = 4.41, 5.30
+
+        elif fascia_nativa == "D":
+
+            can_min, can_max = 3.41, 4.40
+
+        st.success(f"Assegnata: FASCIA {fascia_finale}")
+        st.info(f"Canone Minimo: {can_min:.2f} €/MQ - Canone Massimo: {can_max:.2f} €/MQ")
+
+if zona == "JAPIGIA E SANT'ANNA":
+
+    parzialmente_ammobiliato = st.checkbox("L'immobile è parzialmente ammobiliato?")
+    totalmente_ammobiliato = st.checkbox("L'immobile è totalmente ammobiliato?")
+
+    if totalmente_ammobiliato and parzialmente_ammobiliato:
+        st.warning("L'immobile non può essere totalmente e parzialmente arredato allo stesso tempo")
+    else:
+
+        requisiti_arredo = (
+                valori_checkbox["Impianto di autoclave"] and
+                valori_checkbox["Riscaldamento autonomo o centralizzato o pompa di calore"] and
+                valori_checkbox["Infissi interni ed esterni in buono stato"]
+        )
+
+
+        fascia_nativa = ""
+
+        if counter >= 8:
+            fascia_nativa = "A"
+        elif counter > 6:
+            fascia_nativa = "B"
+        elif counter >= 6:
+            fascia_nativa = "C"
+        else:
+            fascia_nativa = "D"
+
+        fascia_finale = fascia_nativa
+        can_min = 0.0
+        can_max = 0.0
+
+        if fascia_nativa == "A":
+
+            can_min, can_max = 5.26, 6.00
+            if parzialmente_ammobiliato:
+                can_min *= 1.10
+                can_max *= 1.10
+            elif totalmente_ammobiliato:
+                can_min *= 1.20
+                can_max *= 1.20
+
+        elif fascia_nativa in ["B", "C"]:
+
+            if parzialmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 5.26, 6.00
+
+            elif totalmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 5.26 * 1.10, 6.00 * 1.10
+
+            else:
+
+                if fascia_nativa == "B":
+                    can_min, can_max = 4.81, 5.25
+                else:
+                    can_min, can_max = 3.51, 4.80
+
+        elif fascia_nativa == "D":
+
+            can_min, can_max = 3.00, 3.50
+
+
+        st.success(f"Assegnata: FASCIA {fascia_finale}")
+        st.info(f"Canone Minimo: {can_min:.2f} €/MQ - Canone Massimo: {can_max:.2f} €/MQ")
+if zona == "SAN PAOLO":
+
+    parzialmente_ammobiliato = st.checkbox("L'immobile è parzialmente ammobiliato?")
+    totalmente_ammobiliato = st.checkbox("L'immobile è totalmente ammobiliato?")
+
+    if totalmente_ammobiliato and parzialmente_ammobiliato:
+        st.warning("L'immobile non può essere totalmente e parzialmente arredato allo stesso tempo")
+    else:
+
+        requisiti_arredo = (
+                valori_checkbox["Impianto di autoclave"] and
+                valori_checkbox["Riscaldamento autonomo o centralizzato o pompa di calore"] and
+                valori_checkbox["Infissi interni ed esterni in buono stato"]
+        )
+
+
+        fascia_nativa = ""
+
+        if counter > 7:
+            fascia_nativa = "A"
+        elif counter > 6:
+            fascia_nativa = "B"
+        elif counter >= 6:
+            fascia_nativa = "C"
+        else:
+            fascia_nativa = "D"
+
+
+        fascia_finale = fascia_nativa
+        can_min = 0.0
+        can_max = 0.0
+
+        if fascia_nativa == "A":
+
+            can_min, can_max = 4.94, 5.18
+            if parzialmente_ammobiliato:
+                can_min *= 1.10
+                can_max *= 1.10
+            elif totalmente_ammobiliato:
+                can_min *= 1.20
+                can_max *= 1.20
+
+        elif fascia_nativa in ["B", "C"]:
+
+            if parzialmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 4.94, 5.18
+
+            elif totalmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 4.94 * 1.10, 5.18 * 1.10
+
+            else:
+
+                if fascia_nativa == "B":
+                    can_min, can_max = 4.57, 4.93
+                else:
+                    can_min, can_max = 4.32, 4.56
+
+        elif fascia_nativa == "D":
+
+            can_min, can_max = 2.16, 4.31
+
+
+        st.success(f"Assegnata: FASCIA {fascia_finale}")
+        st.info(f"Canone Minimo: {can_min:.2f} €/MQ - Canone Massimo: {can_max:.2f} €/MQ")
+if zona == "STANIC":
+
+    parzialmente_ammobiliato = st.checkbox("L'immobile è parzialmente ammobiliato?")
+    totalmente_ammobiliato = st.checkbox("L'immobile è totalmente ammobiliato?")
+
+    if totalmente_ammobiliato and parzialmente_ammobiliato:
+        st.warning("L'immobile non può essere totalmente e parzialmente arredato allo stesso tempo")
+    else:
+
+        requisiti_arredo = (
+                valori_checkbox["Impianto di autoclave"] and
+                valori_checkbox["Riscaldamento autonomo o centralizzato o pompa di calore"] and
+                valori_checkbox["Infissi interni ed esterni in buono stato"]
+        )
+
+
+        fascia_nativa = ""
+
+        if counter > 7:
+            fascia_nativa = "A"
+        elif counter >= 7:
+            fascia_nativa = "B"
+        elif counter >= 6:
+            fascia_nativa = "C"
+        else:
+            fascia_nativa = "D"
+
+
+        fascia_finale = fascia_nativa
+        can_min = 0.0
+        can_max = 0.0
+
+        if fascia_nativa == "A":
+
+            can_min, can_max = 5.19, 5.50
+            if parzialmente_ammobiliato:
+                can_min *= 1.10
+                can_max *= 1.10
+            elif totalmente_ammobiliato:
+                can_min *= 1.20
+                can_max *= 1.20
+
+        elif fascia_nativa in ["B", "C"]:
+
+            if parzialmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 5.19, 5.50
+
+            elif totalmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 5.19 * 1.10, 5.50 * 1.10
+
+            else:
+
+                if fascia_nativa == "B":
+                    can_min, can_max = 4.91, 5.18
+                else:
+                    can_min, can_max = 4.31, 4.90
+
+        elif fascia_nativa == "D":
+
+            can_min, can_max = 2.16, 4.30
+
+
+        st.success(f"Assegnata: FASCIA {fascia_finale}")
+        st.info(f"Canone Minimo: {can_min:.2f} €/MQ - Canone Massimo: {can_max:.2f} €/MQ")
+if zona == "SAN GIROLAMO - FESCA":
+
+    parzialmente_ammobiliato = st.checkbox("L'immobile è parzialmente ammobiliato?")
+    totalmente_ammobiliato = st.checkbox("L'immobile è totalmente ammobiliato?")
+
+    if totalmente_ammobiliato and parzialmente_ammobiliato:
+        st.warning("L'immobile non può essere totalmente e parzialmente arredato allo stesso tempo")
+    else:
+
+        requisiti_arredo = (
+                valori_checkbox["Impianto di autoclave"] and
+                valori_checkbox["Riscaldamento autonomo o centralizzato o pompa di calore"] and
+                valori_checkbox["Infissi interni ed esterni in buono stato"]
+        )
+
+
+        fascia_nativa = ""
+
+        if counter > 7:
+            fascia_nativa = "A"
+        elif counter >= 7:
+            fascia_nativa = "B"
+        elif counter >= 6:
+            fascia_nativa = "C"
+        else:
+            fascia_nativa = "D"
+
+
+        fascia_finale = fascia_nativa
+        can_min = 0.0
+        can_max = 0.0
+
+        if fascia_nativa == "A":
+
+            can_min, can_max = 5.13, 6.00
+            if parzialmente_ammobiliato:
+                can_min *= 1.10
+                can_max *= 1.10
+            elif totalmente_ammobiliato:
+                can_min *= 1.20
+                can_max *= 1.20
+
+        elif fascia_nativa in ["B", "C"]:
+
+            if parzialmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 5.13, 6.00
+
+            elif totalmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 5.13 * 1.10, 6.00 * 1.10
+
+            else:
+
+                if fascia_nativa == "B":
+                    can_min, can_max = 4.51, 5.12
+                else:
+                    can_min, can_max = 3.88, 4.50
+
+        elif fascia_nativa == "D":
+
+            can_min, can_max = 1.93, 3.87
+
+
+        st.success(f"Assegnata: FASCIA {fascia_finale}")
+        st.info(f"Canone Minimo: {can_min:.2f} €/MQ - Canone Massimo: {can_max:.2f} €/MQ")
+
+if zona == "TORRE A MARE SAN GIORGIO":
+
+    parzialmente_ammobiliato = st.checkbox("L'immobile è parzialmente ammobiliato?")
+    totalmente_ammobiliato = st.checkbox("L'immobile è totalmente ammobiliato?")
+
+    if totalmente_ammobiliato and parzialmente_ammobiliato:
+        st.warning("L'immobile non può essere totalmente e parzialmente arredato allo stesso tempo")
+    else:
+
+        requisiti_arredo = (
+                valori_checkbox["Impianto di autoclave"] and
+                valori_checkbox["Riscaldamento autonomo o centralizzato o pompa di calore"] and
+                valori_checkbox["Infissi interni ed esterni in buono stato"]
+        )
+
+
+        fascia_nativa = ""
+
+        if counter > 7:
+            fascia_nativa = "A"
+        elif counter >= 7:
+            fascia_nativa = "B"
+        else:
+            fascia_nativa = "C"
+
+
+        fascia_finale = fascia_nativa
+        can_min = 0.0
+        can_max = 0.0
+
+        if fascia_nativa == "A":
+
+            can_min, can_max = 5.51, 5.90
+            if parzialmente_ammobiliato:
+                can_min *= 1.10
+                can_max *= 1.10
+            elif totalmente_ammobiliato:
+                can_min *= 1.20
+                can_max *= 1.20
+
+        elif fascia_nativa in ["B", "C"]:
+
+            if parzialmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 5.51, 5.90
+
+            elif totalmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 5.51 * 1.10, 5.90 * 1.10
+
+            else:
+
+                if fascia_nativa == "B":
+                    can_min, can_max = 4.71, 5.50
+                else:  # Fascia C
+                    can_min, can_max = 3.70, 4.70
+
+
+        st.success(f"Assegnata: FASCIA {fascia_finale}")
+        st.info(f"Canone Minimo: {can_min:.2f} €/MQ - Canone Massimo: {can_max:.2f} €/MQ")
+
+if zona == "CARRASSI - SAN PASQUALE":
+
+    parzialmente_ammobiliato = st.checkbox("L'immobile è parzialmente ammobiliato?")
+    totalmente_ammobiliato = st.checkbox("L'immobile è totalmente ammobiliato?")
+
+    if totalmente_ammobiliato and parzialmente_ammobiliato:
+        st.warning("L'immobile non può essere totalmente e parzialmente arredato allo stesso tempo")
+    else:
+
+        requisiti_arredo = (
+                valori_checkbox["Impianto di autoclave"] and
+                valori_checkbox["Riscaldamento autonomo o centralizzato o pompa di calore"] and
+                valori_checkbox["Infissi interni ed esterni in buono stato"]
+        )
+
+
+        fascia_nativa = ""
+
+        if counter > 7:  #
+            fascia_nativa = "A"
+        elif counter >= 7:
+            fascia_nativa = "B"
+        else:
+            fascia_nativa = "C"
+
+
+        fascia_finale = fascia_nativa
+        can_min = 0.0
+        can_max = 0.0
+
+        if fascia_nativa == "A":
+
+            can_min, can_max = 7.01, 7.50
+            if parzialmente_ammobiliato:
+                can_min *= 1.10
+                can_max *= 1.10
+            elif totalmente_ammobiliato:
+                can_min *= 1.20
+                can_max *= 1.20
+
+        elif fascia_nativa in ["B", "C"]:
+
+            if parzialmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 7.01, 7.50
+
+            elif totalmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 7.01 * 1.10, 7.50 * 1.10
+
+            else:
+
+                if fascia_nativa == "B":
+                    can_min, can_max = 6.01, 7.00
+                else:  # Fascia C
+                    can_min, can_max = 5.50, 6.00
+
+
+        st.success(f"Assegnata: FASCIA {fascia_finale}")
+        st.info(f"Canone Minimo: {can_min:.2f} €/MQ - Canone Massimo: {can_max:.2f} €/MQ")
+
+if zona == "POGGIOFRANCO - PICONE":
+
+    parzialmente_ammobiliato = st.checkbox("L'immobile è parzialmente ammobiliato?")
+    totalmente_ammobiliato = st.checkbox("L'immobile è totalmente ammobiliato?")
+
+    if totalmente_ammobiliato and parzialmente_ammobiliato:
+        st.warning("L'immobile non può essere totalmente e parzialmente arredato allo stesso tempo")
+    else:
+
+        requisiti_arredo = (
+                valori_checkbox["Impianto di autoclave"] and
+                valori_checkbox["Riscaldamento autonomo o centralizzato o pompa di calore"] and
+                valori_checkbox["Infissi interni ed esterni in buono stato"]
+        )
+
+
+        fascia_nativa = ""
+
+        if counter > 7:
+            fascia_nativa = "A"
+        elif counter >= 7:
+            fascia_nativa = "B"
+        elif counter >= 6:
+            fascia_nativa = "C"
+        else:
+            fascia_nativa = "D"
+
+
+        fascia_finale = fascia_nativa
+        can_min = 0.0
+        can_max = 0.0
+
+        if fascia_nativa == "A":
+
+            can_min, can_max = 6.88, 7.50
+            if parzialmente_ammobiliato:
+                can_min *= 1.10
+                can_max *= 1.10
+            elif totalmente_ammobiliato:
+                can_min *= 1.20
+                can_max *= 1.20
+
+        elif fascia_nativa in ["B", "C"]:
+
+            if parzialmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 6.88, 7.50
+
+            elif totalmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 6.88 * 1.10, 7.50 * 1.10
+
+            else:
+
+                if fascia_nativa == "B":
+                    can_min, can_max = 6.26, 6.87
+                else:
+                    can_min, can_max = 5.61, 6.25
+
+        elif fascia_nativa == "D":
+
+            can_min, can_max = 5.00, 5.60
+
+
+        st.success(f"Assegnata: FASCIA {fascia_finale}")
+        st.info(f"Canone Minimo: {can_min:.2f} €/MQ - Canone Massimo: {can_max:.2f} €/MQ")
+
+if zona == "CARBONARA - CEGLIE - LOSETO":
+
+    parzialmente_ammobiliato = st.checkbox("L'immobile è parzialmente ammobiliato?")
+    totalmente_ammobiliato = st.checkbox("L'immobile è totalmente ammobiliato?")
+
+    if totalmente_ammobiliato and parzialmente_ammobiliato:
+        st.warning("L'immobile non può essere totalmente e parzialmente arredato allo stesso tempo")
+    else:
+
+        requisiti_arredo = (
+                valori_checkbox["Impianto di autoclave"] and
+                valori_checkbox["Riscaldamento autonomo o centralizzato o pompa di calore"] and
+                valori_checkbox["Infissi interni ed esterni in buono stato"]
+        )
+
+
+        fascia_nativa = ""
+
+        if counter > 7:
+            fascia_nativa = "A"
+        elif counter >= 7:
+            fascia_nativa = "B"
+        elif counter >= 6:
+            fascia_nativa = "C"
+        else:
+            fascia_nativa = "D"
+
+
+        fascia_finale = fascia_nativa
+        can_min = 0.0
+        can_max = 0.0
+
+        if fascia_nativa == "A":
+
+            can_min, can_max = 5.26, 5.70
+            if parzialmente_ammobiliato:
+                can_min *= 1.10
+                can_max *= 1.10
+            elif totalmente_ammobiliato:
+                can_min *= 1.20
+                can_max *= 1.20
+
+        elif fascia_nativa in ["B", "C"]:
+
+            if parzialmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 5.26, 5.70
+
+            elif totalmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 5.26 * 1.10, 5.70 * 1.10
+
+            else:
+
+                if fascia_nativa == "B":
+                    can_min, can_max = 4.88, 5.25
+                else:
+                    can_min, can_max = 4.13, 4.87
+
+        elif fascia_nativa == "D":
+
+            can_min, can_max = 2.06, 4.12
+
+
+        st.success(f"Assegnata: FASCIA {fascia_finale}")
+        st.info(f"Canone Minimo: {can_min:.2f} €/MQ - Canone Massimo: {can_max:.2f} €/MQ")
+if zona == "SANTO SPIRITO - PALESE":
+
+    parzialmente_ammobiliato = st.checkbox("L'immobile è parzialmente ammobiliato?")
+    totalmente_ammobiliato = st.checkbox("L'immobile è totalmente ammobiliato?")
+
+    if totalmente_ammobiliato and parzialmente_ammobiliato:
+        st.warning("L'immobile non può essere totalmente e parzialmente arredato allo stesso tempo")
+    else:
+
+        requisiti_arredo = (
+                valori_checkbox["Impianto di autoclave"] and
+                valori_checkbox["Riscaldamento autonomo o centralizzato o pompa di calore"] and
+                valori_checkbox["Infissi interni ed esterni in buono stato"]
+        )
+
+
+        fascia_nativa = ""
+
+        if counter > 7:
+            fascia_nativa = "A"
+        elif counter >= 7:
+            fascia_nativa = "B"
+        else:
+            fascia_nativa = "C"
+
+
+        fascia_finale = fascia_nativa
+        can_min = 0.0
+        can_max = 0.0
+
+        if fascia_nativa == "A":
+
+            can_min, can_max = 5.69, 6.12
+            if parzialmente_ammobiliato:
+                can_min *= 1.10
+                can_max *= 1.10
+            elif totalmente_ammobiliato:
+                can_min *= 1.20
+                can_max *= 1.20
+
+        elif fascia_nativa in ["B", "C"]:
+
+            if parzialmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 5.69, 6.12
+
+            elif totalmente_ammobiliato and requisiti_arredo:
+                fascia_finale = "A"
+
+                can_min, can_max = 5.69 * 1.10, 6.12 * 1.10
+
+            else:
+
+                if fascia_nativa == "B":
+                    can_min, can_max = 5.13, 5.68
+                else:
+                    can_min, can_max = 2.56, 5.12
+
+
+        st.success(f"Assegnata: FASCIA {fascia_finale}")
+
+stima = st.button("Stima canone")
+if stima:
+    can_finale_minimo = round(can_min*mq , 2)
+    can_finale_massimo = round(can_max*mq , 2)
+    st.success(f"Range stimato: minimo ->{can_finale_minimo} euro , massimo ->{can_finale_massimo} euro ")
